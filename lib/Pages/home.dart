@@ -54,8 +54,10 @@ class _LoginState extends State<Login> {
               ),
               // ignore: unnecessary_new
               new Container(
-                  padding: const EdgeInsets.only(left: 115.0, top: 40.0),
-                  child: ElevatedButton(
+                margin: EdgeInsets.only(top:10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children:[ ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromARGB(255, 117, 25, 18), // Disable color
                     ),
@@ -69,7 +71,7 @@ class _LoginState extends State<Login> {
                         );
                       }
                     },
-                  )),
+              )])),
             ],
           ),
         )));
