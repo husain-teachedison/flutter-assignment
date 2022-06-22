@@ -25,6 +25,7 @@ class _NavigationState extends State<Navigation> {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Color.fromARGB(255, 153, 153, 153),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.movie),

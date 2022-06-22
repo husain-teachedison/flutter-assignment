@@ -39,10 +39,26 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextFormField(
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
+                style:  TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  
                   hintText: 'Enter the pass code',
                   labelText: 'Password',
+                  fillColor: Colors.white,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                      width: 2.0,
+                    ),
+                  ),
+                  
                 ),
                 validator: (value) {
                   if (value != password) {
@@ -56,13 +72,17 @@ class _LoginState extends State<Login> {
               // ignore: unnecessary_new
               new Container(
                 margin: EdgeInsets.only(top:10),
+                
                   child: Column(
+                    
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children:[ ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromARGB(255, 117, 25, 18), // Disable color
                     ),
+                    
                     child: const Text('Submit'),
+                    
                     onPressed: () {
                       // validating form for home page access
                       if (_formKey.currentState!.validate()) {
