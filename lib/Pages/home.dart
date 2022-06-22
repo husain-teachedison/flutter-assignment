@@ -39,6 +39,7 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextFormField(
+                style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
                   hintText: 'Enter the pass code',
                   labelText: 'Password',

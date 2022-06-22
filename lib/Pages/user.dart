@@ -60,13 +60,13 @@ class Profile extends StatelessWidget {
   // ignore: non_constant_identifier_names
   Widget CoverImage() => Container(
         color: Colors.grey,
-        child: Image.network('assets/movie.jpg',
+        child: Image.asset('assets/movie.jpg',
             width: double.infinity, height: coverHeight, fit: BoxFit.cover),
       );
   Widget ProfileImage() => CircleAvatar(
         radius: ProfileHeight / 2,
         backgroundColor: Colors.grey.shade800,
         // ignore: prefer_const_constructors
-        backgroundImage: NetworkImage('assets/me.jpg'),
+        backgroundImage: ExactAssetImage('assets/me.jpg'),
       );
 }
