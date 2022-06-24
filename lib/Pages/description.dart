@@ -15,10 +15,23 @@ class Description extends StatelessWidget {
       required this.vote,
       required this.launch_on});
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 31, 31, 31),
+        toolbarHeight: 50,
+        title: const modified_text(
+          text: 'Description',
+          size: 26,
+          color: Color.fromARGB(255, 197, 197, 197),
+        ),
+        leading:IconButton(
+          icon: Icon(Icons.arrow_back, color: Color.fromARGB(255, 197, 197, 197)),
+          onPressed: () => Navigator.of(context).pop(),
+  ),
+      ),
+      
       body: ListView(
         children: [
           SizedBox(
@@ -49,7 +62,7 @@ class Description extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             child: modified_text(
-              text: name != null ? name : 'Not Loaded',
+              text: name,
               size: 24,
               color: Colors.white,
             ),
@@ -57,7 +70,7 @@ class Description extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(left: 10),
             child: modified_text(
-                text: 'releasing on - ' + launch_on,
+                text: 'releasing on - $launch_on',
                 color: Colors.white,
                 size: 14),
           ),

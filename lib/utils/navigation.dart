@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Pages/movies.dart';
 import 'package:movie_app/Pages/user.dart';
+import 'package:movie_app/models/userProfile.dart';
 
 class Navigation extends StatefulWidget {
-  const Navigation({Key? key}) : super(key: key);
 
+  Model model;
+  Navigation({Key? key, required this.model}) : super(key: key);
   @override
   State<Navigation> createState() => _NavigationState();
 }
@@ -12,6 +14,7 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[Home(), Profile()];
+  
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;

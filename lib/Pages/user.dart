@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:movie_app/utils/text.dart';
+import 'package:movie_app/models/userProfile.dart';
+
 
 class Profile extends StatelessWidget {
   final double coverHeight = 280;
@@ -27,7 +29,7 @@ class Profile extends StatelessWidget {
       child: Column(
         children: const [
           modified_text(
-            text: "Husain jinia",
+            text: 'Husain Jinia',
             size: 23,
             color: Color.fromARGB(255, 214, 214, 214),
           ),

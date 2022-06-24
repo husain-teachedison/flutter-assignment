@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/Pages/description.dart';
 import 'package:movie_app/utils/text.dart';
 
-class TopRated extends StatelessWidget {
-  final List toprated;
+class TvShows extends StatelessWidget {
+  final List tvShows;
 
-  const TopRated({super.key, required this.toprated});
+  const TvShows({super.key, required this.tvShows});
 
   @override
   Widget build(BuildContext context) {
@@ -16,30 +15,19 @@ class TopRated extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const modified_text(
-            text: "Top rated Movies",
+            text: "Tv Shows",
             size: 20,
             color: Color.fromARGB(255, 214, 214, 214),
           ),
           SizedBox(
             height: 270,
             child: ListView.builder(
-                itemCount: toprated.length,
+                itemCount: tvShows.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Description(
-                                  name: toprated[index]['title'],
-                                  description: toprated[index]['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
-                                      toprated[index]['backdrop_path'],
-                                  posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      toprated[index]['poster_path'],
-                                  vote: toprated[index]['vote_average'].toString(),
-                                  launch_on: toprated[index]['release_date'])));
+                      
                     },
                     child: Container(
                       padding: EdgeInsets.all(5),
@@ -54,12 +42,12 @@ class TopRated extends StatelessWidget {
                               image: DecorationImage(
                                   image: NetworkImage(
                                       'https://image.tmdb.org/t/p/w500' +
-                                          toprated[index]['poster_path']),
+                                          tvShows[index]['poster_path']?? 'Loading'),
                                   fit: BoxFit.cover)),
                         ),
                         Container(
                           child: modified_text(
-                            text: toprated[index]['title'] ?? 'Loading',
+                            text: tvShows[index]['title'] ?? 'Loading',
                             size: 13,
                             color: Color.fromARGB(255, 214, 214, 214),
                           ),

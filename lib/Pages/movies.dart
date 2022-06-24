@@ -1,11 +1,17 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:movie_app/Pages/home.dart';
 import 'package:movie_app/Pages/user.dart';
+import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/utils/text.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:movie_app/widgets/toprated.dart';
+import 'package:movie_app/widgets/allMovies.dart';
+import 'package:movie_app/widgets/topRated.dart';
 import 'package:movie_app/widgets/trending.dart';
+import 'package:movie_app/widgets/tvshows.dart';
 import 'package:tmdb_api/tmdb_api.dart';
+import 'package:http/http.dart' as http;
+import '/apiMovies/moviesGet.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,7 +22,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int selectedIndex = 0;
-
+  // ignore: deprecated_member_use
+  List<Movie> _movies = <Movie>[];
   List trendingMovies = [];
   List topratedmovies = [];
   List tv = [];
@@ -27,12 +34,24 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    loadmovies();
+    loadmovies(); 
+    _populateAllMovies();
     super.initState();
+   
   }
 
-  // fetching data from api
+  void _populateAllMovies() async {
+    List<Movie> movies = await fetchAllMovies();
+    setState(() {
+      _movies = movies;
+    });
+  }
+
+  // fetching top rated and top trending movies from tmdb api
   loadmovies() async {
+    const String apikey = 'e8dead6e57f9039ce57b9f7e268e745d';
+    const readaccesstoken =
+        'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOGRlYWQ2ZTU3ZjkwMzljZTU3YjlmN2UyNjhlNzQ1ZCIsInN1YiI6IjYyYjA1ZjZmNjJlODZmMDA1MDIwZDlkMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8f93QaUNEN6oaa6prQRrqaa8VuieOkmxvDuR7Ih6fy8';
     TMDB tmdbWithCustomLogs = TMDB(ApiKeys(apikey, readaccesstoken),
         logConfig: const ConfigLogger(showLogs: true, showErrorLogs: true));
     Map trendingresult = await tmdbWithCustomLogs.v3.trending.getTrending();
@@ -48,12 +67,6 @@ class _HomeState extends State<Home> {
     // ignore: avoid_print
     print(trendingresult);
   }
-
-  static const List<Widget> _widgetOptions = <Widget>[
-    Login(),
-    Home(),
-    Profile()
-  ];
 
   // Widget tree for movies page
   @override
@@ -85,43 +98,11 @@ class _HomeState extends State<Home> {
             ),
             TrendingMovies(trending: trendingMovies),
             TopRated(toprated: topratedmovies),
+            TvShows(tvShows: tv),
+            AllMovies(movies: _movies)
           ],
         ),
       ),
-      // Bottom Navigation section using google navigator plugin
-      // bottomNavigationBar: Container(
-      //   decoration: const BoxDecoration(
-      //     borderRadius: BorderRadius.only(
-      //         topRight: Radius.circular(30), topLeft: Radius.circular(30)),
-      //     boxShadow: [
-      //       BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
-      //     ],
-      //   ),
-      //   child: Padding(
-      //     padding: const EdgeInsets.all(2.0),
-      //     child: GNav(
-      //         backgroundColor: const Color.fromARGB(255, 43, 43, 43),
-      //         color: Colors.white,
-      //         activeColor: Colors.red,
-      //         onTabChange: (index) {
-
-      //         },
-      //         padding: const EdgeInsets.all(14),
-      //         gap: 4,
-
-      //         tabs: const [
-      //           GButton(
-      //             icon: Icons.home,
-      //           ),
-      //           GButton(
-      //             icon: Icons.movie,
-      //           ),
-      //           GButton(
-      //             icon: Icons.man,
-      //           )
-      //         ]),
-      //   ),
-      // )
     );
   }
 }
