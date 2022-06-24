@@ -83,13 +83,13 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.only(top: 15),
+        padding: const EdgeInsets.only(top: 8, bottom:15),
         child: ListView(
           // Widgets for diffrent section of movies page
           children: [
             Container(
               padding: EdgeInsets.all(8),
-              margin: EdgeInsets.only(bottom: 10),
+              margin: EdgeInsets.only(bottom: 15),
               child: const modified_text(
                 text: "Welcome back User !! 👋",
                 size: 17,

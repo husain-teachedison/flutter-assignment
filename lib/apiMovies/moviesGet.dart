@@ -8,14 +8,14 @@ import 'package:tmdb_api/tmdb_api.dart';
 // ignore: unused_element
 
 Future<List<Movie>> fetchAllMovies() async {
-  final String apikey = 'http://www.omdbapi.com/?i=tt3896198&apikey=4f0f5fe7';
+  final String apikey =
+      'http://www.omdbapi.com/?s=Batman&page=2&apikey=4f0f5fe7';
 
-  final response = await get(Uri.parse(apikey));
+  final response = await http.get(Uri.parse(apikey));
 
   if (response.statusCode == 200) {
-    final result = "[" + response.body + "]";
-    print(result);
-    Iterable list = (jsonDecode(result) as List<dynamic>) ;
+    final result = jsonDecode(response.body);
+    Iterable list = result['Search'];
     // ignore: avoid_print
     print(list);
     return list.map((movie) => Movie.fromJson(movie)).toList();

@@ -42,12 +42,13 @@ class TvShows extends StatelessWidget {
                               image: DecorationImage(
                                   image: NetworkImage(
                                       'https://image.tmdb.org/t/p/w500' +
-                                          tvShows[index]['poster_path']?? 'Loading'),
+                                          tvShows[index]['poster_path']?? "none"),
+                                          
                                   fit: BoxFit.cover)),
                         ),
                         Container(
                           child: modified_text(
-                            text: tvShows[index]['title'] ?? 'Loading',
+                            text: tvShows[index]['name'] ?? 'Loading',
                             size: 13,
                             color: Color.fromARGB(255, 214, 214, 214),
                           ),
